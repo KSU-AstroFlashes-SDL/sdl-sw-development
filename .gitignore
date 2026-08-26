@@ -1,0 +1,16 @@
+*.bak
+*.log
+*.sw[op]
+*.tmp
+*~
+
+desktop.ini
+.DS_Store
+NOTES.txt
+Thumbs.db
+
+$RECYCLE.BIN/
+.vscode/
+
+!.keep
+
