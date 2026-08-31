@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+BASHRC="${HOME}/.bashrc"
+{
+  echo ""
+  echo "###############################################################################"
+  echo "# DO NOT MODIFY ANYTHING BELOW THIS MARKER!"
+  echo "# (personal aliases/functions/exports MAY be defined ABOVE this marker)"
+} >> "${BASHRC}"
+
+###############################################################################
+# pipx
+
+PIPX_MARKER="# pipx completion - added by /opt/lifecycle/postCreate"
+if ! grep -F "${PIPX_MARKER}" "${BASHRC}"; then
+	pipx ensurepath --force
+fi
+
+{
+  echo ""
+  echo "${PIPX_MARKER} $(date)"
+  echo 'eval "$(register-python-argcomplete pipx)"'
+} >> "${BASHRC}"
+grep -F "${PIPX_MARKER}" "${BASHRC}"
+
+###############################################################################
+# ruff
+
+if ! which ruff; then
+	pipx install ruff --force
+fi
+
+###############################################################################
+# fprime-bootstrap
+
+if ! which fprime-bootstrap; then
+	pipx install fprime-bootstrap --force
+fi
+

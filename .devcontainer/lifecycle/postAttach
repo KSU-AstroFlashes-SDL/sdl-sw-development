@@ -1,0 +1,100 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+SSH_DIR="${HOME}/.ssh"
+ID_KEY="${SSH_DIR}/id_ed25519"
+SIGN_KEY="${SSH_DIR}/sign_ed25519"
+GITCONFIG="${HOME}/.gitconfig"
+REPO_URL="git@github.com:KSU-AstroFlashes-SDL/FlashSat-1_Software.git"
+REPO_DIR="${HOME}/FlashSat-1_Software"
+
+_gen_id_ed25519() {
+	local keyfn="${1:-$ID_KEY}"
+	ssh-keygen -t ed25519 -a 101 -N '' -f "${keyfn}" -C "sdl-sw-development/$(whoami)@$(hostname -s)[$(basename ${keyfn})]"
+}
+
+_gen_sign_ed25519() {
+	local keyfn="${1:-$SIGN_KEY}"
+	ssh-keygen -t ed25519 -a 199 -N '' -f "${keyfn}" -C "sdl-sw-development/$(whoami)@$(hostname -s)[$(basename ${keyfn})]"
+}
+
+_register_github_key() {
+	local kind="${1}"
+	local keyfn="${2}"
+	cat <<EOF
+
+Register the following key at https://github.com/settings/keys
+-------
+$(cat "${keyfn}.pub")
+-------
+1. Click [New SSH key]
+2. Leave the "Title" EMPTY
+3. Select "${kind} Key" from the "Key type" dropdown
+4. Copy & paste the "ssh-ed25519 ..." text (above) into "Key" (DO NOT include the ------- lines!)
+5. Click [Add SSH key]
+EOF
+}
+
+need_to_register_keys="no"
+
+# idempotency guard: authentication (ID) key
+if [ ! -f "${ID_KEY}" ]; then
+	_gen_id_ed25519
+	need_to_register_keys="yes"
+	_register_github_key "Authentication" "${ID_KEY}"
+fi
+
+# idempotency guard: signing key
+if [ ! -f "${SIGN_KEY}" ]; then
+	_gen_sign_ed25519
+	need_to_register_keys="yes"
+	_register_github_key "Signing" "${SIGN_KEY}"
+fi
+
+if [ "${need_to_register_keys}" = "yes" ]; then
+	echo ""
+	read -p "(press <Enter> to continue AFTER keys have been registered with GitHub...)" _Enter_key
+fi
+
+# If a global Git configuration key doesn't have an expected value, then
+# set it (optionally prompting the user for the value).
+# USAGE: _gitconfig_check_set "gitconfig.key" ( "value" | ( "pattern" "prompt" ))"
+_gitconfig_check_set() {
+	local key="${1}"
+	local pattern="${2}"
+	local prompt="${3:-}"
+
+	local value="$(git config --global ${key})"
+	if [[ -z "${prompt}" ]]
+	then
+		# pattern is the desired literal value
+		git config --global "${key}" "${pattern}"
+	else
+		# pattern is a regex; user must provide a matching value
+		while [[ ! "${value}" =~ ${pattern} ]]
+		do
+			read -p "${prompt}" value
+		done
+		git config --global "${key}" "${value}"
+	fi
+}
+
+# idempotency guard: .gitconfig
+if ! git config --global --get user.sdlswSetupComplete; then
+	_gitconfig_check_set init.defaultbranch main
+	_gitconfig_check_set user.name "[A-Za-z0-9 ,'.-]+" "Your full name (First Last): "
+	_gitconfig_check_set user.email "[A-Za-z][A-Za-z0-9_]+@kent\.edu$" "Your KSU email (@kent.edu): "
+	_gitconfig_check_set user.signingkey "${SIGN_KEY}.pub"
+	_gitconfig_check_set gpg.format ssh
+	_gitconfig_check_set commit.gpgsign true
+	_gitconfig_check_set tag.gpgsign true
+	_gitconfig_check_set core.sshCommand "ssh -i ${ID_KEY}"
+	_gitconfig_check_set user.sdlswSetupComplete true
+fi
+
+# idempotency guard: REPO_DIR
+if [ ! -d "${REPO_DIR}" ]; then
+	git clone --recurse-submodules "${REPO_URL}" "${REPO_DIR}"
+fi
+

@@ -1,0 +1,43 @@
+---
+
+Checks: >-
+  bugprone-*,
+  cert-*,
+  clang-analyzer-*,
+  clang-diagnostic-*,
+  cppcoreguidelines-*,
+  hicpp-*,
+  llvm-*,
+  misc-*,
+  modernize-*,-modernize-use-trailing-return-type,-modernize-return-braced-init-list,
+  portability-*,
+  readability-*
+
+CheckOptions:
+  - key:   bugprone-unhandled-self-assignment.WarnOnlyIfThisHasSuspiciousField
+    value: false
+  - key:   llvm-namespace-comment.ShortNamespaceLines
+    value: 10
+  - key:   llvm-else-after-return.WarnOnUnfixable
+    value: false
+  - key:   modernize-loop-convert.MinConfidence
+    value: 'safe'
+  - key:   modernize-use-auto.MinTypeNameLength
+    value: 1
+  - key:   modernize-use-auto.RemoveStars
+    value: false
+  - key:   modernize-use-default-member-init.UseAssignment
+    value: true
+  - key:   modernize-use-transparent-functors.SafeMode
+    value: true
+  - key:   readability-else-after-return.WarnOnConditionVariables
+    value: false
+  - key:   readability-function-size.LineThreshold
+    value: 30
+  - key:   readability-function-size.NestingThreshold
+    value: 3
+  - key:   readability-function-size.ParameterThreshold
+    value: 5
+
+FormatStyle: 'file'
+

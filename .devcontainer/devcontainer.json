@@ -1,0 +1,24 @@
+{
+  "name": "SDL Development",
+  "build": {
+    "dockerfile": "Dockerfile",
+	"context": "."
+  },
+  "remoteUser": "developer",
+  "mounts": [
+    "source=sdl-sw-developer-home,target=/home/developer,type=volume"
+  ],
+  "runArgs": [
+    "--userns=keep-id"
+  ],
+  "workspaceFolder": "/home/developer",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "dev.containers.mountWaylandSocket": false
+      }
+    }
+  },
+  "postCreateCommand": "/opt/lifecycle/postCreate",
+  "postAttachCommand": "/opt/lifecycle/postAttach"
+}

@@ -1,0 +1,7 @@
+---
+BasedOnStyle: LLVM
+
+AlwaysBreakAfterReturnType: TopLevel
+BreakBeforeBraces: Linux
+IndentCaseBlocks: true
+
