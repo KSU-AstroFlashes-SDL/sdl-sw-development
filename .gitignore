@@ -10,6 +10,7 @@ NOTES.txt
 Thumbs.db
 
 $RECYCLE.BIN/
+.ruff_cache/
 .vscode/
 
 !.keep
