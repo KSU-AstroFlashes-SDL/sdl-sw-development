@@ -68,21 +68,20 @@ this repository's [Troubleshooting](TROUBLESHOOTING.md) document.
       "podman-compose".
    c) **IF you installed *Podman* Desktop** (not Docker Desktop), find the
       "Dev › Containers: Docker Path" setting and change the value to "podman".
-   e) Find the "Dev › Containers: Mount Wayland Socket" setting and make sure
-      it is UNCHECKED.
 
-### Linux-specific instructions for *podman* or *Podman Desktop*
-
-On Linux systems, additional steps must be taken to allow Dev Containers to
-function properly with `podman` or Podman Desktop:
-
-```console
-systemctl --user status podman.socket
-echo "${XDG_RUNTIME_DIR}/podman/podman.sock"
-```
-
-Copy the echoed path and update the "Dev › Containers: Docker Socket Path"
-setting with that value.
+> [!NOTE]
+> _Linux-specific instructions for *podman* or *Podman Desktop*_
+>
+> On Linux systems, additional steps must be taken to allow Dev Containers to
+> function properly with `podman` or Podman Desktop:
+>
+> ```console
+> systemctl --user status podman.socket
+> echo "${XDG_RUNTIME_DIR}/podman/podman.sock"
+> ```
+>
+> Copy the echoed path and update the "Dev › Containers: Docker Socket Path"
+> setting with that value.
 
 4. Clone the *sdl-sw-development* git repo to your "host" machine (i.e.,
    your student laptop or a desktop computer):
@@ -112,4 +111,35 @@ setting with that value.
 At any time, you may repeat steps #5 and #6 to re-enter a development session.
 (This process will complete MUCH quicker on subsequent invocations because the
 development image will already exist on your "host" machine.)
+
+### Post-install verification steps
+
+Once VS Code attaches to your development container (which you'll know by
+confirming that you see "Dev Container: SDL Development" in the lower-left
+corner of your VS Code window), you can open a new terminal (Ctrl-`).
+
+In that new terminal, your prompt SHOULD resemble:
+
+```console
+[developer@6e5afca7bb02 ~]
+$
+```
+
+If you then `cd FlashSat-1_Software`, your prompt SHOULD now resemble:
+(note the "(main)" Git branch identifier)
+
+```console
+[developer@6e5afca7bb02 ~/FlashSat-1_Software] (main)
+$
+```
+
+Additionally, all of the following programs should be found:
+
+```console
+which fprime-bootstrap syft grype g++ gdb clang++ lldb clang-format clang-tidy python ruff uv nvim nano
+```
+
+If your prompt does not resemble the examples above, or if ANY of the above
+programs are not found by the `which` command, something is wrong.
+**Contact the Software subsection lead or deputy before proceeding.**
 

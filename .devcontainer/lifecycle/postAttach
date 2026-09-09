@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
+set -o errexit -o nounset -o pipefail
 
 SSH_DIR="${HOME}/.ssh"
 ID_KEY="${SSH_DIR}/id_ed25519"
@@ -22,18 +22,18 @@ _gen_sign_ed25519() {
 _register_github_key() {
 	local kind="${1}"
 	local keyfn="${2}"
-	cat <<EOF
+	cat <<-EOF
 
-Register the following key at https://github.com/settings/keys
--------
-$(cat "${keyfn}.pub")
--------
-1. Click [New SSH key]
-2. Leave the "Title" EMPTY
-3. Select "${kind} Key" from the "Key type" dropdown
-4. Copy & paste the "ssh-ed25519 ..." text (above) into "Key" (DO NOT include the ------- lines!)
-5. Click [Add SSH key]
-EOF
+		Register the following key at https://github.com/settings/keys
+		-------
+		$(cat "${keyfn}.pub")
+		-------
+		1. Click [New SSH key]
+		2. Leave the "Title" EMPTY
+		3. Select "${kind} Key" from the "Key type" dropdown
+		4. Copy & paste the "ssh-ed25519 ..." text (above) into "Key" (DO NOT include the ------- lines!)
+		5. Click [Add SSH key]
+		EOF
 }
 
 need_to_register_keys="no"

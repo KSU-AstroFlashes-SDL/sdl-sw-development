@@ -1,0 +1,7 @@
+# DO NOT MODIFY!
+
+# this is a Dev Container; delegate all environment setup to ~/.bashrc
+. ~/.bashrc
+
+# Anything that appears below this marker SHOULD be relocated into ~/.bashrc
+

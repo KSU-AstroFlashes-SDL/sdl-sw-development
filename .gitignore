@@ -14,4 +14,5 @@ $RECYCLE.BIN/
 .vscode/
 
 !.keep
+!.vscode/settings.json
 

@@ -1,0 +1,19 @@
+# DO NOT NODIFY anything below this marker.
+# Personal aliases and such MAY be added ABOVE this marker.
+
+export PATH="${HOME}/.local/bin:${PATH}"
+
+# enable completions for git and update the prompt with useful information when
+# $PWD is within a Git repository
+# (most importantly: display the current branch name and dirty state)
+. /usr/share/bash-completion/bash_completion
+. /usr/share/bash-completion/completions/git
+. /usr/lib/git-core/git-sh-prompt
+export GIT_PS1_SHOWCOLORHINTS=true
+export GIT_PS1_SHOWDIRTYSTATE=1
+export GIT_PS1_SHOWUNTRACKEDFILES=1
+export PROMPT_COMMAND='__git_ps1 "[\u@\h \w]" "\n\\$ "'
+
+# enable completions for pipx
+eval "$(register-python-argcomplete pipx)"
+

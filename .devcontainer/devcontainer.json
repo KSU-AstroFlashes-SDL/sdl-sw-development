@@ -1,8 +1,7 @@
 {
   "name": "SDL Development",
   "build": {
-    "dockerfile": "Dockerfile",
-	"context": "."
+    "dockerfile": "Dockerfile"
   },
   "remoteUser": "developer",
   "mounts": [
