@@ -143,3 +143,10 @@ If your prompt does not resemble the examples above, or if ANY of the above
 programs are not found by the `which` command, something is wrong.
 **Contact the Software subsection lead or deputy before proceeding.**
 
+# Next steps
+
+Try the
+[F´ Hello World Tutorial](https://fprime.jpl.nasa.gov/latest/tutorials-hello-world/docs/hello-world/).
+
+> [!TIP]
+> Start with step (1b) of the tutorial - the `fprime-bootstrap` utility has already been installed in the development image.
