@@ -18,6 +18,6 @@
       }
     }
   },
-  "postCreateCommand": "/opt/lifecycle/postCreate",
-  "postAttachCommand": "/opt/lifecycle/postAttach"
+  "postCreateCommand": "bash /opt/lifecycle/postCreate.sh",
+  "postAttachCommand": "bash /opt/lifecycle/postAttach.sh"
 }

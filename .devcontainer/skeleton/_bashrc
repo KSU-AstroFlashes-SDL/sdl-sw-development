@@ -6,14 +6,20 @@ export PATH="${HOME}/.local/bin:${PATH}"
 # enable completions for git and update the prompt with useful information when
 # $PWD is within a Git repository
 # (most importantly: display the current branch name and dirty state)
-. /usr/share/bash-completion/bash_completion
 . /usr/share/bash-completion/completions/git
 . /usr/lib/git-core/git-sh-prompt
 export GIT_PS1_SHOWCOLORHINTS=true
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWUNTRACKEDFILES=1
-export PROMPT_COMMAND='__git_ps1 "[\u@\h \w]" "\n\\$ "'
+#export PROMPT_COMMAND='__git_ps1 "[\u@\h \w]" "\n\\$ "'
+__prompt_venv_git() {
+	local venv_prefix=""
+	if [ -n "$VIRTUAL_ENV" ]; then
+		venv_prefix="(${VIRTUAL_ENV_PROMPT:-$(basename "${VIRTUAL_ENV}")}) "
+	fi
+	__git_ps1 "${venv_prefix}[\u@\h \w]" "\n\$ "
+}
+export PROMPT_COMMAND='__prompt_venv_git'
 
 # enable completions for pipx
 eval "$(register-python-argcomplete pipx)"
-
