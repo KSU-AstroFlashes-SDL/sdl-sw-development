@@ -41,6 +41,7 @@ ARG RUN_PACKAGE_LIST="\
 	libssl-dev \
 	libxml2-dev \
 	libxmlsec1-dev \
+	lld \
 	lldb \
 	locales \
 	nano \
