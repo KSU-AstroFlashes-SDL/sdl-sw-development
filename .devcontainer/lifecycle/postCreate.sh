@@ -2,6 +2,9 @@
 
 set -o errexit -o nounset -o pipefail
 
+# F-prime does not ignore generated coverage/ subdirectories
+git config --global core.excludesFile ~/.config/git/ignore
+
 # fprime-bootstrap: project intializer for F-prime
 pipx install fprime-bootstrap --force
 
