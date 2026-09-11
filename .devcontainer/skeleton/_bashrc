@@ -1,5 +1,18 @@
+alias j='jobs'
+
+EDITOR=vi
+
 # DO NOT NODIFY anything below this marker.
 # Personal aliases and such MAY be added ABOVE this marker.
+
+http() {
+	local rootdir="${1:-.}"
+	if [ -d "${rootdir}" ]; then
+		PYTHONUNBUFFERED=x python -m http.server "${rootdir}"
+	else
+		1>&2 echo -e "No such directory: ${rootdir}"
+	fi
+}
 
 export PATH="${HOME}/.local/bin:${PATH}"
 
