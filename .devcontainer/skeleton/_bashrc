@@ -8,7 +8,7 @@ EDITOR=vi
 http() {
 	local rootdir="${1:-.}"
 	if [ -d "${rootdir}" ]; then
-		PYTHONUNBUFFERED=x python -m http.server "${rootdir}"
+		PYTHONUNBUFFERED=x python -m http.server -d "${rootdir}"
 	else
 		1>&2 echo -e "No such directory: ${rootdir}"
 	fi
