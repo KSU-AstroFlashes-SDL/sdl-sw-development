@@ -7,9 +7,6 @@
   "mounts": [
     "source=sdl-sw-developer-home,target=/home/developer,type=volume"
   ],
-  "runArgs": [
-    "--userns=keep-id"
-  ],
   "workspaceFolder": "/home/developer",
   "customizations": {
     "vscode": {

@@ -35,8 +35,6 @@ If you see output similar to the following on *Linux*:
 [79793 ms] Exit code 125
 ```
 
-This can happen if you are running *Podman Desktop* on Linux. Go back to the
-[README](README.md) document and make sure you've followed the "Linux-specific
-instructions" update the location of the Podman socket file (podman.sock) in
-the Dev Containers extension settings.
+**IF** you are running `podman` or `Podman Desktop`, follow the instructions in
+[PODMAN.md](PODMAN.md).
 
