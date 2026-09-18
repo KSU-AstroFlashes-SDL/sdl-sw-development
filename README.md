@@ -31,25 +31,26 @@ this repository's [Troubleshooting](TROUBLESHOOTING.md) document.
    [Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/en-us/windows/wsl/install).
    This is used internally by Docker Desktop to improve performace on Windows.
 
-   > [!NOTE]
-   > It is not necessary to install any Linux distro in WSL.
+> [!NOTE]
+> It is not necessary to install any Linux distro in WSL.
+
 2. Install [Docker Desktop](https://www.docker.com/products/docker-desktop/).
    This allows the VS Code IDE to run the development container.
 3. Install the [Microsoft VS Code](https://code.visualstudio.com/) IDE
    (Integrated Development Environment). You will use this IDE to connect
    directly to and work within the development container.
 
-   > [!TIP]
-   > On Linux, do **not** install VS Code from the Snap store. Snap packaging
-   > causes issues with some VS Code extensions, including those we need to use
-   > for SDL development.
-   >
-   > Instead, install the official RPM for VS Code from Microsoft.
-   >
-   > See
-   > [Installing Visual Studio Code on Linux](https://code.visualstudio.com/docs/setup/linux).
-   > Consult your distro's documentation for specific instructions on how to
-   > install software directly from RPMs.
+> [!TIP]
+> On Linux, do **not** install VS Code from the Snap store. Snap packaging
+> causes issues with some VS Code extensions, including those we need to use
+> for SDL development.
+>
+> Instead, install the official RPM for VS Code from Microsoft.
+>
+> See
+> [Installing Visual Studio Code on Linux](https://code.visualstudio.com/docs/setup/linux).
+> Consult your distro's documentation for specific instructions on how to
+> install software directly from RPMs.
 
 ## Instructions
 
