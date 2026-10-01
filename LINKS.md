@@ -36,7 +36,7 @@ Git != Git*Hub*!
 **GitHub** is an online service that hosts your Git repositories.
 
 * [Git](https://git-scm.com/)
-* [The absolute minimum Git tutorial](The absolute minimum Git tutorial.pdf)
+* [The absolute minimum Git tutorial](The%20absolute%20minimum%20Git%20tutorial.pdf)
 * [Learn git](https://git-scm.com/learn)
 * [GitHub Hello World](https://docs.github.com/en/get-started/using-github/hello-world)
 
